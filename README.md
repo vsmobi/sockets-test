@@ -1,8 +1,3 @@
-# Instructions
-
-* You should aim to spend between 3 to 4 hours on the exercise
-* Return the solution or make it available to us upon completion
-
 ## Minimum Technical Requirements
 
 The solution should as a minimum be defined using:
