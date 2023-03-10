@@ -9,7 +9,8 @@
     "packages/server"
   ],
   "devDependencies": {
-    "typescript": "^4.9.5",
+    "react-scripts": "5.0.1",
+    "typescript": "~4.4.4",
     "eslint-config-vsmobi": "^0.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
