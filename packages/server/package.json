@@ -1,0 +1,17 @@
+{
+  "name": "@vsmobi/sockets-test-server",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "vadim",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^6.5.3",
+    "ws": "^7.2.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}

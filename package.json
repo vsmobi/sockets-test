@@ -1,0 +1,20 @@
+{
+  "name": "@vsmobi/sockets-test",
+  "version": "0.0.1",
+  "private": true,
+  "author": "vsmobi",
+  "repository": "https://github.com/vsmobi/sockets-test.git",
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
+  "devDependencies": {
+    "typescript": "^4.9.5",
+    "eslint-config-vsmobi": "^0.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.14",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11"
+  }
+}
