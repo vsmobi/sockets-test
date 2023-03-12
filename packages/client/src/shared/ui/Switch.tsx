@@ -5,7 +5,7 @@ const SwitchCss = css`
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 33px;
 
   input {
     opacity: 0;
@@ -20,36 +20,34 @@ const SwitchCss = css`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
+    background-color: var(--color-grey-2);
     transition: .4s;
-    border-radius: 34px;
+    border-radius: 33px;
     border: none;
 
     &:before {
       position: absolute;
       content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
+      height: 25px;
+      width: 25px;
+      left: 3px;
       bottom: 4px;
       background-color: white;
-      -webkit-transition: .4s;
       transition: .4s;
       border-radius: 50%;
     }
   }
 
   input:checked + button {
-    background-color: #2196F3;
+    background-color: var(--color-green);
   }
 
   input:focus + button {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px var(--color-green);
   }
 
   input:checked + button:before {
-    left: calc(100% - 2px);
+    left: calc(100% - 3px);
     transform: translateX(-100%);
   }
 `;

@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 const MainCss = css`
   flex: 1 1 auto;
-  background-color: #eee;
+  background-color: var(--color-grey-1);
   padding: var(--offset-l);
 `;
 

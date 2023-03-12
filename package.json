@@ -5,8 +5,7 @@
   "author": "vsmobi",
   "repository": "https://github.com/vsmobi/sockets-test.git",
   "workspaces": [
-    "packages/client",
-    "packages/server"
+    "packages/*"
   ],
   "devDependencies": {
     "@craco/craco": "^7.0.0",
@@ -21,6 +20,6 @@
     "typescript": "~4.4.4"
   },
   "scripts": {
-    "start": "npm start -ws"
+    "starter": "npm start -ws"
   }
 }
