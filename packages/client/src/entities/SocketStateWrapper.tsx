@@ -1,10 +1,9 @@
 import React, { PropsWithChildren } from 'react';
-import { ReadyState } from 'react-use-websocket';
 
-import { Loader } from 'src/shared';
+import { Loader, WebSocketReadyState } from 'src/shared';
 
 type SocketStateWrapperProps = PropsWithChildren<{
-    readyState: ReadyState
+    readyState: WebSocketReadyState
 }>;
 
 export const SocketStateWrapper = ({
@@ -12,13 +11,13 @@ export const SocketStateWrapper = ({
     children
 }: SocketStateWrapperProps) => {
     switch (readyState) {
-        case ReadyState.CLOSED:
-        case ReadyState.OPEN:
+        case WebSocketReadyState.CLOSED:
+        case WebSocketReadyState.OPEN:
             return <>{children}</>;
-        case ReadyState.CONNECTING: {
+        case WebSocketReadyState.CONNECTING: {
             return <Loader isLoading/>;
         }
-        case ReadyState.UNINSTANTIATED:
+        case WebSocketReadyState.UNINSTANTIATED:
             return <div>Socket error</div>;
         default:
             return null;

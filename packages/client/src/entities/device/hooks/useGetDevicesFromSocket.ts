@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import useWebSocket from 'react-use-websocket';
+
+import { useWebSocket } from 'src/shared';
 
 import { DeviceInfo, ToggleDeviceStatus } from '../types';
 
