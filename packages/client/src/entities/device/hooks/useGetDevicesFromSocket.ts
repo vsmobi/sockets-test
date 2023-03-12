@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 
-import { Layout } from 'src/shared';
-import { Device, DeviceInfo, ToggleDeviceStatus } from 'src/entities';
+import { DeviceInfo, ToggleDeviceStatus } from '../types';
 
 type ChangeStatusMessage = {
     id: string,
     command: 'connect' | 'disconnect'
 };
 
-const useGetDevicesFromSocket = (url: string) => {
+export const useGetDevicesFromSocket = (url: string) => {
     const [devices, setDevices] = useState<Record<string, DeviceInfo>>({});
     const {
         lastJsonMessage,
-        sendJsonMessage
+        sendJsonMessage,
+        readyState
     } = useWebSocket<DeviceInfo>(url);
 
     useEffect(() => {
@@ -37,31 +37,9 @@ const useGetDevicesFromSocket = (url: string) => {
             command: isNextConnected ? 'connect' : 'disconnect'
         } as ChangeStatusMessage);
     };
-
     return {
+        readyState,
         devices,
         toggleDeviceStatus
     };
-};
-
-const URL = 'ws://localhost:5000';
-
-export const DevicesDashboard = () => {
-    const {
-        devices,
-        toggleDeviceStatus
-    } = useGetDevicesFromSocket(URL);
-
-    return (
-        <Layout>
-            {Object.values(devices)
-                .map((deviceInfo) => (
-                    <Device
-                        toggleStatus={toggleDeviceStatus}
-                        key={deviceInfo.id}
-                        info={deviceInfo}
-                    />
-                ))}
-        </Layout>
-    );
 };

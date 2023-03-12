@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { ChangeEventHandler, useId } from 'react';
 import { css } from '@emotion/react';
 
 const SwitchCss = css`
@@ -28,7 +28,7 @@ const SwitchCss = css`
   }
 
   :has(input:checked) {
-    background-color: var(--color-green);
+    background-color: var(--color-green-1);
   }
 
   input:checked + span {
@@ -39,7 +39,7 @@ const SwitchCss = css`
 
 type SwitchProps = {
     isChecked: boolean,
-    onChange: () => void
+    onChange: ChangeEventHandler<HTMLInputElement>
 };
 
 export const Switch = ({

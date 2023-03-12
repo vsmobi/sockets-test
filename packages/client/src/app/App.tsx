@@ -1,15 +1,16 @@
 import React from 'react';
-import { css } from '@emotion/react';
 
-import { MainPage } from 'src/pages';
+import { AppConfigContextProvider, SOCKET_URL } from 'src/shared';
+import { DevicesPage } from 'src/pages';
 
-const AppStyleCss = css`
-  background-color: #f0f;
-  height: 100%;
-  display: flex;
-`;
-export const App = () => (
-    <div css={AppStyleCss}>
-        <MainPage/>
-    </div>
-);
+export const App = () => {
+    if (!SOCKET_URL) {
+        return <div>SOCKET_URL is not defined</div>;
+    }
+
+    return (
+        <AppConfigContextProvider defaultValue={{ url: SOCKET_URL }}>
+            <DevicesPage/>
+        </AppConfigContextProvider>
+    );
+};

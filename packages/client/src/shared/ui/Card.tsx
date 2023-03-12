@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
 import { css } from '@emotion/react';
 
-import { SpaceBetween } from './SpaceBetween';
+import { Space } from './Space';
 
 const CardCss = css`
   background-color: #fff;
@@ -24,10 +24,10 @@ export const Card = ({
     children
 }: CardProps) => (
     <article css={CardCss}>
-        <SpaceBetween>
+        <Space isBetween>
             <h2>{title}</h2>
             {extra}
-        </SpaceBetween>
+        </Space>
         {children}
     </article>
 
