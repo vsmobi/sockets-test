@@ -3,9 +3,12 @@ import { css } from '@emotion/react';
 
 const SwitchCss = css`
   position: relative;
-  display: inline-block;
+  cursor: pointer;
+  transition: background-color .2s;
+  background: var(--color-grey-2);
   width: 60px;
   height: 33px;
+  border-radius: 50px;
 
   input {
     opacity: 0;
@@ -13,71 +16,47 @@ const SwitchCss = css`
     height: 0;
   }
 
-  button {
+  span {
     position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--color-grey-2);
-    transition: .4s;
-    border-radius: 33px;
-    border: none;
-
-    &:before {
-      position: absolute;
-      content: "";
-      height: 25px;
-      width: 25px;
-      left: 3px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
+    background: #fff;
+    top: 4px;
+    left: 4px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    transition: 0.2s;
   }
 
-  input:checked + button {
+  :has(input:checked) {
     background-color: var(--color-green);
   }
 
-  input:focus + button {
-    box-shadow: 0 0 1px var(--color-green);
-  }
-
-  input:checked + button:before {
-    left: calc(100% - 3px);
+  input:checked + span {
+    left: calc(100% - 4px);
     transform: translateX(-100%);
   }
 `;
 
 type SwitchProps = {
     isChecked: boolean,
-    onChange: (nextState: boolean) => void
+    onChange: () => void
 };
+
 export const Switch = ({
     isChecked,
     onChange
 }: SwitchProps) => {
     const id = useId();
 
-    const handleChange = () => {
-        onChange(!isChecked);
-    };
-
     return (
         <label css={SwitchCss} htmlFor={id}>
             <input
                 checked={isChecked}
                 type="checkbox"
-                name={id}
+                id={id}
+                onChange={onChange}
             />
-            <button
-                aria-label="Switch"
-                type="button"
-                onClick={handleChange}
-            />
+            <span/>
         </label>
     );
 };
