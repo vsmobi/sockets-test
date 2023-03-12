@@ -13,6 +13,7 @@ NodeJS v19.7.0 (npm 9.5.0)
 
 add **REACT_APP_URL variable** in the .env file (REACT_APP_URL=ws://localhost:5000)
 
+Run commands:
 ```bash
 npm install && npm start
 ```
