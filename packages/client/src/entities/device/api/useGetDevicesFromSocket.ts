@@ -15,7 +15,7 @@ export const useGetDevicesFromSocket = (url: string) => {
         lastJsonMessage,
         sendJsonMessage,
         readyState
-    } = useWebSocket<DeviceInfo>(url);
+    } = useWebSocket<DeviceInfo, ChangeStatusMessage>(url);
 
     useEffect(() => {
         if (lastJsonMessage !== null) {
@@ -36,7 +36,7 @@ export const useGetDevicesFromSocket = (url: string) => {
         sendJsonMessage({
             id,
             command: isNextConnected ? 'connect' : 'disconnect'
-        } as ChangeStatusMessage);
+        });
     };
     return {
         readyState,

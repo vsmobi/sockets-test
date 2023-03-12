@@ -7,7 +7,7 @@ on data provided through a Web Socket endpoint.
 
 ## Requirements
 
-Node JS v19.7.0 (npm 9.5.0)
+NodeJS v19.7.0 (npm 9.5.0)
 
 ## How to use
 
@@ -16,6 +16,10 @@ add REACT_APP_URL variable in the .env file (REACT_APP_URL=ws://localhost:5000)
 ```bash
 npm install && npm start
 ```
+
+## Other ENV variables
+
+- REACT_APP_USE_MY_WEB_SOCKET_CLIENT: <true>: use my implementation of socket client
 
 ## Stack
 
