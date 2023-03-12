@@ -11,7 +11,5 @@
   "dependencies": {
     "rxjs": "^6.5.3",
     "ws": "^7.2.0"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }

@@ -2,6 +2,9 @@
   "extends": [
     "eslint-config-vsmobi"
   ],
+  "rules": {
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+  },
   "parserOptions": {
     "project": "./tsconfig.eslint.json"
   }

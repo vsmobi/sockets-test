@@ -1,27 +1,15 @@
 import React from 'react';
+import { css } from '@emotion/react';
 
-import logo from './logo.svg';
-import './App.css';
+import { MainPage } from 'src/pages';
 
+const AppStyleCss = css`
+  background-color: #f0f;
+  height: 100%;
+  display: flex;
+`;
 export const App = () => (
-    <div className="App">
-        <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <p>
-                Edit
-                {' '}
-                <code>src/App.tsx</code>
-                {' '}
-                and save to reload.
-            </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Learn React
-            </a>
-        </header>
+    <div css={AppStyleCss}>
+        <MainPage/>
     </div>
 );
