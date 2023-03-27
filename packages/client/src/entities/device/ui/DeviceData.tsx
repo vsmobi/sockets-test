@@ -7,12 +7,10 @@ export const DeviceData = ({
     value,
     unit
 }: DeviceInfo) => {
-    if (!connected) {
-        return <span>Not Connected</span>;
-    }
+    const prefix = !connected ? 'Last Value ' : '';
     return (
         <span>
-            {`${value} ${unit}`}
+            {value ? `${prefix}${value} ${unit}` : 'No Data'}
         </span>
     );
 };

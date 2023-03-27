@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ReadyState } from 'react-use-websocket';
 
-import { flushSync } from 'react-dom';
 import { WebSocketHook } from './types';
 
 const getLastJsonMessage = (data: string) => {
@@ -21,7 +20,7 @@ export const useWebSocket: WebSocketHook = <T, M>(url: string) => {
     const socketRef = useRef<WebSocket>();
 
     const setMessage = ({ data }: MessageEvent) => {
-        flushSync(() => setLastMessage(data));
+        setLastMessage(data);
     };
 
     const lastJsonMessage: T = useMemo(() => getLastJsonMessage(lastMessage), [lastMessage]);

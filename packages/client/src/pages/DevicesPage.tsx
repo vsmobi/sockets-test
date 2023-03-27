@@ -44,7 +44,6 @@ export const DevicesPage = () => {
             <SocketStateWrapper
                 readyState={readyState}
             >
-
                 <GridLayout>
                     {!filteredDevices.length && <div>No devices</div>}
                     {filteredDevices.map((deviceInfo) => (

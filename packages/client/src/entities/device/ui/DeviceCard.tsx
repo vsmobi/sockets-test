@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Card, Switch } from 'src/shared';
 
@@ -10,14 +10,17 @@ type DeviceProps = {
     toggleStatus: ToggleDeviceStatus
 };
 
-export const DeviceCard = ({
+export const DeviceCard = React.memo(({
     info,
     toggleStatus
 }: DeviceProps) => {
+    const [lastValue, setLastValue] = useState<string>('');
+
     const {
         id,
         name,
-        connected
+        connected,
+        value
     } = info;
     return (
         <Card
@@ -26,6 +29,9 @@ export const DeviceCard = ({
                 <Switch
                     isChecked={connected}
                     onChange={() => {
+                        if (connected) {
+                            setLastValue(value);
+                        }
                         toggleStatus({
                             id,
                             isNextConnected: !connected
@@ -34,7 +40,7 @@ export const DeviceCard = ({
                 />
             )}
         >
-            <DeviceData {...info} />
+            <DeviceData {...info} value={value || lastValue}/>
         </Card>
     );
-};
+});

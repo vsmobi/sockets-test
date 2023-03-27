@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { throttle } from 'lodash';
 
 import { useWebSocket } from 'src/shared';
 
@@ -9,6 +11,17 @@ type ChangeStatusMessage = {
     command: 'connect' | 'disconnect'
 };
 
+const getNextDeviceInfo = (nextDeviceInfo: DeviceInfo, prevDeviceInfo?: DeviceInfo) => {
+    if (!prevDeviceInfo) {
+        return nextDeviceInfo;
+    }
+    const {
+        value: nextValue,
+        ...rest
+    } = nextDeviceInfo;
+    return { value: nextValue ?? prevDeviceInfo.value, ...rest };
+};
+
 export const useGetDevicesFromSocket = (url: string) => {
     const [devices, setDevices] = useState<Record<string, DeviceInfo>>({});
     const {
@@ -17,19 +30,24 @@ export const useGetDevicesFromSocket = (url: string) => {
         readyState
     } = useWebSocket<DeviceInfo, ChangeStatusMessage>(url);
 
+    const setDevicesThrottled = useCallback(throttle(setDevices, 1000), [setDevices]);
+
     useEffect(() => {
         if (lastJsonMessage !== null) {
-            setDevices((prevState) => (
-                {
-                    ...prevState,
-                    [lastJsonMessage.id]: lastJsonMessage
+            setDevicesThrottled((prevState) => {
+                const next = getNextDeviceInfo(lastJsonMessage, prevState[lastJsonMessage.id]);
 
-                }
-            ));
+                return (
+                    {
+                        ...prevState,
+                        ...(next ? { [lastJsonMessage.id]: next } : null)
+                    }
+                );
+            });
         }
-    }, [lastJsonMessage, setDevices]);
+    }, [lastJsonMessage, setDevicesThrottled]);
 
-    const toggleDeviceStatus: ToggleDeviceStatus = ({
+    const toggleDeviceStatus: ToggleDeviceStatus = useCallback(({
         id,
         isNextConnected
     }) => {
@@ -37,7 +55,8 @@ export const useGetDevicesFromSocket = (url: string) => {
             id,
             command: isNextConnected ? 'connect' : 'disconnect'
         });
-    };
+    }, [sendJsonMessage]);
+
     return {
         readyState,
         devices,
