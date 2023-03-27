@@ -3,3 +3,4 @@ export * from './GridLayout';
 export * from './Loader';
 export * from './Space';
 export * from './Switch';
+export * from './Page';

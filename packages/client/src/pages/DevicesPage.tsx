@@ -1,14 +1,15 @@
 import React from 'react';
 
 import {
-    GridLayout, Space,
+    GridLayout,
+    Space,
     Switch,
-    useAppConfig
+    useAppConfig,
+    Page
 } from 'src/shared';
 import {
     DeviceCard,
     useGetDevicesFromSocket,
-    Page,
     SocketStateWrapper,
     useDevicesFilter
 } from 'src/entities';
